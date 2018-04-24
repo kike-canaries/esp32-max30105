@@ -26,6 +26,14 @@
 #include "esp_sleep.h"
 #include "lwip/err.h"
 #include "apps/sntp/sntp.h"
+#include "MAX30105.h"
+#include "spo2_algorithm.h"
+
+MAX30105 particleSensor;
+
+#define MAX_BRIGHTNESS 255
+
+
 
 // firmware version from git rev-list command
 String VERSION_CODE = "rev";
