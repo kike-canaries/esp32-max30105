@@ -121,6 +121,7 @@ void refreshScreen() {
   time_t now;
   struct tm timeinfo;
   char timebuf[64];
+  time(&now);
   localtime_r(&now, &timeinfo);
   strftime(timebuf, sizeof(timebuf),"%Y %a, %d %b %H:%M:%S", &timeinfo);
   
