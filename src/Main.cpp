@@ -33,8 +33,6 @@ MAX30105 particleSensor;
 
 #define MAX_BRIGHTNESS 255
 
-
-
 // firmware version from git rev-list command
 String VERSION_CODE = "rev";
 int VCODE = SRC_REV;
@@ -164,9 +162,26 @@ void setup() {
   // Set timezone for America/Bogota
   setenv("TZ", "<-05>5", 1);
   tzset();
+  // Initialize sensor
+  if (!particleSensor.begin()) //Use default I2C port, 400kHz speed
+  {
+    Serial.println(F("MAX30105 was not found. Please check wiring/power."));
+    while (1);
+  }
+
+  byte ledBrightness = 60; //Options: 0=Off to 255=50mA
+  byte sampleAverage = 4; //Options: 1, 2, 4, 8, 16, 32
+  byte ledMode = 2; //Options: 1 = Red only, 2 = Red + IR, 3 = Red + IR + Green
+  byte sampleRate = 100; //Options: 50, 100, 200, 400, 800, 1000, 1600, 3200
+  int pulseWidth = 411; //Options: 69, 118, 215, 411
+  int adcRange = 4096; //Options: 2048, 4096, 8192, 16384
+
+  particleSensor.setup(ledBrightness, sampleAverage, ledMode, sampleRate, pulseWidth, adcRange); //Configure sensor with these settings
+
   // Splash Window
   showWelcome();
   Serial.println("== Setup ready ==");
+
 }
 
 /******************************************************************************
