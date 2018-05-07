@@ -1,5 +1,6 @@
-# esp32-max30105
-ESP32 tests with max30105 over WeMOS like board 
+# esp8266 test with max30105
+
+ESP8266 tests with max30105 over WeMOS D1-r2 like board 
 
 ## Connection
 
@@ -8,8 +9,8 @@ From SparkFun library of max30105:
 Hardware Connections (Breakoutboard to Arduino):
   -5V = 5V (3.3V is allowed)
   -GND = GND
-  -SDA = A4 (or SDA)
-  -SCL = A5 (or SCL)
+  -SDA = D2 (or SDA in Wemos D1-r2)
+  -SCL = D1 (or SCL)
   -INT = Not connected
 
 The MAX30105 Breakout can handle 5V or 3.3V I2C logic. We recommend powering the board with 5V
